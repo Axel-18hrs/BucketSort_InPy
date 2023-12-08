@@ -86,7 +86,7 @@ class Program:
         Program.bucket_sort(array)
         end_time = time.time()
         print(f"\nArray after sorting: {array}")
-        print(f"Time: {end_time - start_time} milliseconds")
+        print(f"Time: {end_time - start_time} seconds")
         input("Press Enter to continue...")
 
     @staticmethod
@@ -100,14 +100,25 @@ class Program:
                 index = len(buckets) - 1
             buckets[index].append(element)
 
+        Program.print_bucket_state(buckets)
+
         for i in range(len(buckets)):
             buckets[i].sort()
+
+        Program.print_bucket_state(buckets)
 
         index = 0
         for i in range(len(buckets)):
             for item in buckets[i]:
                 array[index] = item
                 index += 1
+
+    @staticmethod
+    def print_bucket_state(buckets):
+        print("Current state of buckets:")
+        for i in range(len(buckets)):
+            print(f"Bucket {i}: {buckets[i]}")
+        print()
 
     @staticmethod
     def get_current_time():
